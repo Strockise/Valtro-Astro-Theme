@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatDate } from '@/lib/utils';
+import { cmsImage } from '@/lib/images';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  author?: CollectionEntry<'authors'>;
+}
+
+const { post, author } = Astro.props;
+const { title, publishedDate, readingTime } = post.data;
+const mainImage = await cmsImage(post.data.mainImage, {
+  widths: [500, 800, 1080],
+  sizes: '(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px',
+});
+
+const reveal =
+  'opacity:0;filter:blur(15px);-webkit-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)';
+---
+
+<section class="blog-details-hero-section">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-main w-container">
+      <div class="blog-details-hero-content">
+        <div class="blog-details-hero-text-block">
+          <h1 data-w-id="be09ae73-8be7-674b-dbc6-33ad8275a295" style={reveal} class="page-intro-text left">{title}</h1>
+        </div>
+        <div class="blog-details-hero-image-block"><img style={reveal} data-w-id="be09ae73-8be7-674b-dbc6-33ad8275a298" alt={mainImage?.alt ?? ''} src={mainImage?.src} srcset={mainImage?.srcset} sizes={mainImage?.sizes} loading="lazy" class="blog-main-image" />
+          <div data-w-id="be09ae73-8be7-674b-dbc6-33ad8275a299" style={reveal} class="blog-details-info-block">
+            <div class="blog-details-single-info-block">
+              <div class="blog-details-info-title">Author:</div>
+              <p class="blog-details-info-text">{author?.data.name}</p>
+            </div>
+            <div class="blog-details-single-info-block">
+              <div class="blog-details-info-title">Published:</div>
+              <p class="blog-details-info-text">{formatDate(publishedDate)}</p>
+            </div>
+            <div class="blog-details-single-info-block">
+              <div class="blog-details-info-title">Reading Time:</div>
+              <p class="blog-details-info-text">{readingTime}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

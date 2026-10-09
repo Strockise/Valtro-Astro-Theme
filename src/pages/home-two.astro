@@ -1,0 +1,35 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Hero from '@/components/sections/home-two/Hero.astro';
+import About from '@/components/sections/home-two/About.astro';
+import Sponsor from '@/components/sections/shared/Sponsor.astro';
+import KeyBenefit from '@/components/sections/home-two/KeyBenefit.astro';
+import WhyChoose from '@/components/sections/home-two/WhyChoose.astro';
+import Comparison from '@/components/sections/home-two/Comparison.astro';
+import Testimonial from '@/components/sections/home-two/Testimonial.astro';
+import KeyFeature from '@/components/sections/home-two/KeyFeature.astro';
+import BlogSection from '@/components/blog/BlogSection.astro';
+import config from '@/config/config.json';
+import { getLatest, getPosts } from '@/lib/blog';
+
+const posts = getLatest(await getPosts(), config.blog.home_count);
+---
+
+<BaseLayout wfPage="6ac69645ebf308dc9ba19a3a" title="Home Two">
+  <Hero />
+  <About />
+  <Sponsor />
+  <KeyBenefit />
+  <WhyChoose />
+  <Comparison />
+  <Testimonial />
+  <KeyFeature />
+  <BlogSection
+    posts={posts}
+    subtitle="Our Blog"
+    title="Insights That Level Up Your Workflow"
+    interactionId="2d644d45-be01-179c-2341-3ee19398cf04"
+    container="container-main"
+    headingWidth="max-w-580"
+  />
+</BaseLayout>

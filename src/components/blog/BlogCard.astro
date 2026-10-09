@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { postUrl } from '@/lib/blog';
+import { cmsImage } from '@/lib/images';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  /** Webflow interaction ID for the image hover effect (differs per list). */
+  interactionId: string;
+  /** The Blog and Home Two lists label the title link; the Related list does not. */
+  labelled?: boolean;
+}
+
+const { post, interactionId, labelled = true } = Astro.props;
+const href = postUrl(post);
+const { title } = post.data;
+const thumbnail = await cmsImage(post.data.thumbnail);
+---
+
+<div role="listitem" class="blog-collection-item w-dyn-item">
+  <div class="blog-item-block">
+    <a data-w-id={interactionId} href={href} class="blog-item-image-block w-inline-block"><img src={thumbnail?.src} loading="lazy" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt={thumbnail?.alt || 'Blog Item Image'} class="blog-item-image" />
+      <div style="opacity:0" class="blog-item-hover-block">
+        <div class="blog-item-hover-view-text">View</div>
+      </div>
+    </a>
+    <a aria-label={labelled ? 'Blog Item Content Block' : undefined} href={href} class="blog-item-content-block w-inline-block">
+      <h3 class="blog-item-title">{title}</h3>
+    </a>
+  </div>
+</div>

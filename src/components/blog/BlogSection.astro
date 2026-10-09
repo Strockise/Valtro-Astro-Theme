@@ -1,0 +1,54 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BlogCard from './BlogCard.astro';
+
+interface Props {
+  posts: CollectionEntry<'blog'>[];
+  subtitle: string;
+  title: string;
+  /** Webflow interaction ID for the cards' image hover effect. */
+  interactionId: string;
+  container?: 'container-main' | 'container-sm';
+  headingWidth?: string;
+  labelled?: boolean;
+}
+
+const { posts, subtitle, title, interactionId, container = 'container-sm', headingWidth, labelled = true } = Astro.props;
+---
+
+<section class="blog-section">
+  <div class="section-gap">
+    <div class:list={['w-layout-blockcontainer', container, 'w-container']}>
+      <div class="blog-wrapper">
+        <div class:list={['section-heading-block', headingWidth]}>
+          <div class="section-title-block">
+            <div class="subtitle-block">
+              <div class="subtitle-text">{subtitle}</div>
+            </div>
+            <h2 class="section-title top-24px-gap">{title}</h2>
+          </div>
+        </div>
+        <div class="blog-content-block">
+          <slot name="featured" />
+          <div class="main-blog-block">
+            <div class="blog-collection-list-block w-dyn-list">
+              {
+                posts.length > 0 ? (
+                  <div role="list" class="blog-collection-list w-dyn-items">
+                    {posts.map((post) => (
+                      <BlogCard post={post} interactionId={interactionId} labelled={labelled} />
+                    ))}
+                  </div>
+                ) : (
+                  <div class="w-dyn-empty">
+                    <div>No items found.</div>
+                  </div>
+                )
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

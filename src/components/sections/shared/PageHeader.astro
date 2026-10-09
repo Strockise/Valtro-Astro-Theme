@@ -1,0 +1,43 @@
+---
+/**
+ * Page intro ("breadcrumb") section used at the top of inner pages.
+ * Anything passed in the default slot renders below the text block
+ * (e.g. the hero image on Blog, the form on Contact).
+ */
+interface Props {
+  subtitle?: string;
+  title: string;
+  summary: string;
+  /** Width utility applied to the summary block, e.g. "max-w-700". */
+  summaryWidth?: string;
+  /** Width utility applied to the content block. */
+  contentWidth?: string;
+}
+
+const { subtitle, title, summary, summaryWidth, contentWidth = 'max-w-896' } = Astro.props;
+---
+
+<section class="breadcrumb-section">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-sm w-container">
+      <div class="breadcrumb-wrapper">
+        <div class:list={['breadcrumb-content-block', contentWidth]}>
+          <div class="breadcrumb-title-block">
+            {
+              subtitle && (
+                <div class="subtitle-block">
+                  <div class="subtitle-text">{subtitle}</div>
+                </div>
+              )
+            }
+            <h1 class="breadcrumb-title top-24px-gap">{title}</h1>
+          </div>
+          <div class:list={['breadcrumb-summary-block', summaryWidth]}>
+            <div class="breadcrumb-summary top-20px-gap">{summary}</div>
+          </div>
+        </div>
+        <slot />
+      </div>
+    </div>
+  </div>
+</section>

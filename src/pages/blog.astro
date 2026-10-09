@@ -1,0 +1,40 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/sections/shared/PageHeader.astro';
+import BlogSection from '@/components/blog/BlogSection.astro';
+import FeaturedBlogCard from '@/components/blog/FeaturedBlogCard.astro';
+import { getFeatured, getPosts } from '@/lib/blog';
+
+const posts = await getPosts();
+const featured = getFeatured(posts);
+// The main list shows every post except the one in the featured block.
+const listed = posts.filter((post) => post !== featured);
+---
+
+<BaseLayout wfPage="6ac69645ebf308dc9ba19a35" title="Blog">
+  <PageHeader
+    subtitle="Our Blog"
+    title="Insights & Ideas for Smarter CRM"
+    summary="Stay ahead with expert tips, best practices, and the latest trends in customer relationship management."
+    summaryWidth="max-w-700"
+  >
+    <div data-w-id="5e46f9f3-c4cd-b764-2e6e-0785532cba60" style="opacity:0;filter:blur(15px);-webkit-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="breadcrumb-image-block"><img src="/images/Blog-Page-Hero-Image.jpg" loading="lazy" sizes="(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px" srcset="/images/Blog-Page-Hero-Image-p-500.jpg 500w, /images/Blog-Page-Hero-Image-p-800.jpg 800w, /images/Blog-Page-Hero-Image-p-1080.jpg 1080w, /images/Blog-Page-Hero-Image.jpg 1440w" alt="Blog Page Hero Image" class="blog-page-hero-image" /></div>
+  </PageHeader>
+  <BlogSection posts={listed} subtitle="Blogs" title="Our all blogs" interactionId="12eb84ab-5525-7bbd-c0c0-bad596a96b5a">
+    <div class="featured-blog-block" slot="featured">
+      <div class="featured-blog-collection-block w-dyn-list">
+        {
+          featured ? (
+            <div role="list" class="featured-blog-collection-list w-dyn-items">
+              <FeaturedBlogCard post={featured} />
+            </div>
+          ) : (
+            <div class="w-dyn-empty">
+              <div>No items found.</div>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </BlogSection>
+</BaseLayout>

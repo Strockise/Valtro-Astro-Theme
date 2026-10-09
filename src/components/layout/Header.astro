@@ -1,0 +1,95 @@
+---
+import menu from '@/config/menu.json';
+import { currentAttrs } from '@/lib/utils';
+
+const { pathname } = Astro.url;
+
+type Link = { name: string; url: string };
+type Group = { title?: string; links: Link[] };
+type Item = { name: string; url?: string; interactionId?: string; variant?: string; groups?: Group[] };
+
+const items = menu.main as Item[];
+---
+
+<header class="header">
+  <div data-animation="default" data-collapse="medium" data-duration="400" data-easing="ease" data-easing2="ease" role="banner" class="navbar w-nav">
+    <div class="container-lg w-container">
+      <div class="navbar-block">
+        <div class="navbar-main-content">
+          <a {...currentAttrs('/', pathname, 'navbar-main-block w-nav-brand')}><img loading="lazy" src="/images/Nav-Logo-10.svg" alt="" class="navbar-main-image" /></a>
+          <nav role="navigation" class="navbar-menu-block w-nav-menu">
+            <div class="navbar-menu-content">
+              {
+                items.map((item) =>
+                  item.groups ? (
+                    <div data-delay="800" data-hover="false" data-w-id={item.interactionId} class="navbar-dropdown-block w-dropdown">
+                      <div class="dropdown-toggle w-dropdown-toggle">
+                        <div class="navbar-link-text">{item.name}</div>
+                        <div aria-label="dropdown-icon" class="drodown-icon w-embed">
+                          <svg width="100%" height="100%" viewBox="0 0 31 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.25 1.25L13.4132 13.4132C14.3576 14.3576 14.8299 14.8299 15.4167 14.8299C16.0035 14.8299 16.4758 14.3576 17.4201 13.4132L29.5833 1.25" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </div>
+                      </div>
+                      <nav class:list={['dropdown-menu-wrapper', item.variant, 'w-dropdown-list']}>
+                        <div class:list={['dropdown-menu-block', item.variant]}>
+                          <div class="dropdown-menu-content">
+                            {item.groups.map((group) => (
+                              <div class="dropdown-menu-item">
+                                {group.title && (
+                                  <div class="dropdown-header-block">
+                                    <div class="text-medium">{group.title}</div>
+                                  </div>
+                                )}
+                                <div class:list={['dropdown-links-wrapper', { 'is-1': !group.title }]}>
+                                  {group.links.map((link) => (
+                                    <a {...currentAttrs(link.url, pathname, 'dropdown-link-block w-inline-block')}>
+                                      <div class="drodown-text">{link.name}</div>
+                                    </a>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </nav>
+                    </div>
+                  ) : (
+                    <a {...currentAttrs(item.url!, pathname, 'navbar-link-block w-inline-block')}>
+                      <div class="navbar-link-text">{item.name}</div>
+                    </a>
+                  )
+                )
+              }
+            </div>
+          </nav>
+          <div class="navbar-button-s-block">
+            <div class="nav-button-block">
+              <a data-w-id="20c2705c-b621-9fe3-50e3-47b747da8166" {...currentAttrs(menu.cta.url, pathname, 'nav-button w-inline-block')}>
+                <div class="button-content-block is-1">
+                  <div class="button-text">{menu.cta.name}</div>
+                </div>
+                <div class="button-hover-bg-block">
+                  <div class="button-hover-transition button-transition-rounded">
+                    <div class="button-content-block is-2">
+                      <div class="button-text is-2">{menu.cta.name}</div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="menu-button w-nav-button" aria-label="Menu">
+              <div class="menu-icon w-embed">
+                <svg width="100%" height="100%" viewBox="0 0 39 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 2.03711H30.5185" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M2 15H37" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                  <path d="M2 27.9631H30.5185" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" />
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

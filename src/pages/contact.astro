@@ -1,0 +1,18 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PageHeader from '@/components/sections/shared/PageHeader.astro';
+import ContactForm from '@/components/sections/contact/ContactForm.astro';
+import ContactDetails from '@/components/sections/contact/ContactDetails.astro';
+---
+
+<BaseLayout wfPage="6ac69645ebf308dc9ba19a36" title="Contact">
+  <PageHeader
+    subtitle="Contact US"
+    title="Let’s Connect"
+    summary="Have questions or need help choosing the right plan? Our team is here to support you every step of the way."
+    summaryWidth="max-w-700"
+  >
+    <ContactForm />
+  </PageHeader>
+  <ContactDetails />
+</BaseLayout>

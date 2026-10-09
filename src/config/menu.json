@@ -1,0 +1,62 @@
+{
+  "main": [
+    {
+      "name": "Home",
+      "interactionId": "20c2705c-b621-9fe3-50e3-47b747da812e",
+      "variant": "home",
+      "groups": [
+        {
+          "links": [
+            { "name": "Home One", "url": "/" },
+            { "name": "Home Two", "url": "/home-two" }
+          ]
+        }
+      ]
+    },
+    { "name": "Feature", "url": "/feature" },
+    { "name": "Blog", "url": "/blog" },
+    {
+      "name": "Pages",
+      "interactionId": "c1e0da64-4f23-aaa9-1fc7-e057d64c1a3a",
+      "groups": [
+        {
+          "title": "Pages",
+          "links": [
+            { "name": "Home One", "url": "/" },
+            { "name": "Home Two", "url": "/home-two" },
+            { "name": "Feature", "url": "/feature" },
+            { "name": "Pricing", "url": "/pricing" },
+            { "name": "Blog", "url": "/blog" },
+            { "name": "Blog Details", "url": "/blog-post/how-crm-automation-boosts-productivity-by-3x" }
+          ]
+        },
+        {
+          "title": "Utility",
+          "links": [
+            { "name": "Style Guide", "url": "/style-guide" },
+            { "name": "404 Page", "url": "/404" }
+          ]
+        }
+      ]
+    },
+    { "name": "Pricing", "url": "/pricing" }
+  ],
+  "cta": { "name": "Try Valtro", "url": "/contact" },
+  "footer": [
+    [
+      { "name": "Home One", "url": "/" },
+      { "name": "Home Two", "url": "/home-two" },
+      { "name": "Feature", "url": "/feature" },
+      { "name": "Pricing", "url": "/pricing" },
+      { "name": "Contact", "url": "/contact" }
+    ],
+    [
+      { "name": "Style Guide", "url": "/style-guide" },
+      { "name": "404 Page", "url": "/404" }
+    ]
+  ],
+  "footer_cta": {
+    "title": "Build Stronger Relationships with Valtro",
+    "button": { "name": "Start Free Trial", "url": "/contact" }
+  }
+}

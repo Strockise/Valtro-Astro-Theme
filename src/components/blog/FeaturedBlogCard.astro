@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { postUrl } from '@/lib/blog';
+import { cmsImage } from '@/lib/images';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const href = postUrl(post);
+const { title, summary, featuredText } = post.data;
+const thumbnail = await cmsImage(post.data.thumbnail, {
+  widths: [500, 800, 1080],
+  sizes: '(max-width: 767px) 100vw, (max-width: 991px) 728px, 940px',
+});
+---
+
+<div role="listitem" class="featured-blog-collection-item w-dyn-item">
+  <div data-w-id="6415fc2e-8266-e9ee-7ba0-b13024e52570" style="opacity:0;filter:blur(15px);-webkit-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="featured-blog-item-block">
+    <div class="featured-blog-content-block">
+      <div class="featured-blog-subtitle-block">
+        <div class="featured-blog-subtitle-dot"></div>
+        <div class="featured-blog-subtitle-text">{featuredText}</div>
+      </div>
+      <div class="featured-blog-text-block">
+        <a aria-label="Featured Blog Title Link" href={href} class="featured-blog-title-link w-inline-block">
+          <h3 class="featured-blog-title">{title}</h3>
+        </a>
+        <p class="featured-blog-summary">{summary}</p>
+      </div>
+      <a href={href} class="featured-blog-link-button-block w-inline-block">
+        <div class="featured-blog-link-button-text">Learn more</div>
+        <div class="featured-blog-link-button-icon w-embed">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 12H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15.0001 17C15.0001 17 20 13.3176 20 12C20 10.6824 15 7 15 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+      </a>
+    </div>
+    <a data-w-id="b586ff86-4b8b-345d-0efc-60e1a27d169d" href={href} aria-label={title} class="featured-blog-image-block w-inline-block"><img src={thumbnail?.src} srcset={thumbnail?.srcset} sizes={thumbnail?.sizes} loading="lazy" style="-webkit-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 0, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" alt={thumbnail?.alt ?? ''} class="featured-blog-image" />
+      <div style="opacity:0" class="blog-item-hover-block">
+        <div class="blog-item-hover-view-text">View</div>
+      </div>
+    </a>
+  </div>
+</div>

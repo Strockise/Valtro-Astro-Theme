@@ -1,0 +1,21 @@
+---
+import { render, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { Content } = await render(Astro.props.post);
+---
+
+<section class="blog-details-section">
+  <div class="section-gap">
+    <div class="w-layout-blockcontainer container-sm w-container">
+      <div class="blog-details-wrapper">
+        <div class="blog-details-content-block">
+          <div data-w-id="729c074c-f9fc-8778-e8af-d5133cc10598" style="opacity:0;filter:blur(15px);-webkit-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="blog-details-text w-richtext"><Content /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,78 @@
+---
+import config from '@/config/config.json';
+import menu from '@/config/menu.json';
+import social from '@/config/social.json';
+import SocialIcon from '@/components/ui/SocialIcon.astro';
+import { currentAttrs } from '@/lib/utils';
+
+const { pathname } = Astro.url;
+const { title, button } = menu.footer_cta;
+const { platform } = config.credits;
+const year = new Date().getFullYear();
+---
+
+<footer data-w-id="2396090b-9e79-fbb2-50ac-105f10a07963" class="footer-section">
+  <div class="w-layout-blockcontainer container-main w-container">
+    <div class="footer-wrapper">
+      <div class="footer-top-block">
+        <a href="/" aria-label="Home" class="footer-logo-block w-inline-block"><img loading="lazy" src="/images/Footer-Logo-6.svg" alt="Footer Logo" class="footer-logo" /></a>
+        <div class="footer-content-block">
+          <h2 class="footer-title">{title}</h2>
+          <a data-wf--primary-button--variant="varient-1" data-w-id="3777c73a-e3db-7083-32dd-508f59160645" {...currentAttrs(button.url, pathname, 'primary-button w-inline-block')}>
+            <div class="button-content-block is-1">
+              <div class="button-text is-1">{button.name}</div>
+              <div class="button-icon is-1 w-embed">
+                <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M10.2479 14.7734C10.2479 14.7734 11.9925 12.1228 13.4187 10.6965C14.845 9.2703 17.4956 7.52563 17.4956 7.52563M17.4956 7.52563L-3.71089e-05 7.5256M17.4956 7.52563C17.4956 7.52563 14.845 5.78096 13.4187 4.35474C11.9925 2.92851 10.2479 0.277872 10.2479 0.277872" stroke="currentColor" stroke-width="1.01367" />
+                </svg>
+              </div>
+            </div>
+            <div class="button-hover-bg-block">
+              <div class="button-hover-transition button-transition-rounded">
+                <div class="button-content-block is-2">
+                  <div class="button-text is-2">{button.name}</div>
+                  <div class="button-icon is-2 w-embed">
+                    <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M10.2479 14.7734C10.2479 14.7734 11.9925 12.1228 13.4187 10.6965C14.845 9.2703 17.4956 7.52563 17.4956 7.52563M17.4956 7.52563L-3.71089e-05 7.5256M17.4956 7.52563C17.4956 7.52563 14.845 5.78096 13.4187 4.35474C11.9925 2.92851 10.2479 0.277872 10.2479 0.277872" stroke="currentColor" stroke-width="1.01367" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom-block">
+        <div id="w-node-_2396090b-9e79-fbb2-50ac-105f10a0796f-10a07963" class="footer-link-block">
+          {
+            menu.footer.map((column) => (
+              <div class="footer-link-column">
+                {column.map((link) => (
+                  <a {...currentAttrs(link.url, pathname, 'footer-link')}>{link.name}</a>
+                ))}
+              </div>
+            ))
+          }
+        </div>
+        <div class="social-media-block">
+          <div id="w-node-_2396090b-9e79-fbb2-50ac-105f10a07987-10a07963" class="social-title-block">
+            <p class="social-title">{social.title}</p>
+          </div>
+          {
+            social.links.map((link) => (
+              <a href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name} class="social-icon-block w-inline-block">
+                <div class="social-icon w-embed">
+                  <SocialIcon name={link.icon} />
+                </div>
+              </a>
+            ))
+          }
+        </div>
+        <div id="w-node-_2396090b-9e79-fbb2-50ac-105f10a07992-10a07963" class="copyright-text-block">
+          <p class="footer-bottom-text">Copyright © {year} <a href="/" class="footer-bottom-link">{config.site.title}<br />‍</a>Powered by <a href={platform.url} target="_blank" rel="noopener noreferrer" class="footer-bottom-link">{platform.name}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

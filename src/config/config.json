@@ -1,0 +1,22 @@
+{
+  "site": {
+    "title": "Valtro",
+    "home_title": "Valtro - Astro Theme",
+    "title_suffix": "Valtro Astro Theme",
+    "base_url": "https://example.com",
+    "description": "Valtro is a sleek Astro theme for SaaS and sales-focused teams to showcase software, manage leads, highlight benefits, and build a professional, conversion-ready online presence ideal for startups, CRM tools, and sales platforms.",
+    "og_image": "/images/og-image.png",
+    "lang": "en"
+  },
+  "webflow": {
+    "site_id": "6ac69645ebf308dc9ba19a3f"
+  },
+  "credits": {
+    "platform": { "name": "Astro", "url": "https://astro.build" }
+  },
+  "blog": {
+    "base_path": "/blog-post",
+    "related_count": 3,
+    "home_count": 3
+  }
+}

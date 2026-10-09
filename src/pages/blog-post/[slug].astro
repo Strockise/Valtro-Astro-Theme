@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import PostHero from '@/components/blog/PostHero.astro';
+import PostContent from '@/components/blog/PostContent.astro';
+import BlogSection from '@/components/blog/BlogSection.astro';
+import config from '@/config/config.json';
+import { getLatest, getPosts, type Post } from '@/lib/blog';
+import { cmsImage } from '@/lib/images';
+
+export const getStaticPaths = (async () => {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: { slug: post.data.slug },
+    props: { post, related: getLatest(posts, config.blog.related_count, post.id) },
+  }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  post: Post;
+  related: Post[];
+}
+
+const { post, related } = Astro.props;
+const author = post.data.author ? await getEntry(post.data.author) : undefined;
+const shareImage = await cmsImage(post.data.mainImage, { format: 'jpg' });
+---
+
+<BaseLayout
+  wfPage="6ac69645ebf308dc9ba19a37"
+  title={post.data.title}
+  description={post.data.summary || undefined}
+  image={shareImage?.src}
+  type="article"
+>
+  <PostHero post={post} author={author} />
+  <PostContent post={post} />
+  <BlogSection posts={related} subtitle="Blogs" title={'Related  blog'} interactionId="31c15f1a-2715-1e4d-a054-bf5a3f97f565" labelled={false} />
+</BaseLayout>
