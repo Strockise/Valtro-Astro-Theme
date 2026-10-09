@@ -1,0 +1,3 @@
+# Vendored scripts must stay byte-for-byte identical
+public/js/** -text
+*.tar.gz binary
