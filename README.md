@@ -2,6 +2,8 @@
 
 Valtro is a SaaS / CRM marketing theme for [Astro](https://astro.build) with a blog powered by [Strapi](https://strapi.io).
 
+**Live demo:** https://valtro-astro-theme.vercel.app
+
 - 2 home pages, Feature, Pricing, Blog, Blog post, Contact, Style Guide and 404 pages
 - Scroll, load and hover animations, dropdown navigation, mobile menu, FAQ accordion and tabs
 - Blog Posts and Authors managed in Strapi 5 and loaded through Astro's Content Layer
