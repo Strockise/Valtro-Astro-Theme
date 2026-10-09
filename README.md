@@ -9,6 +9,7 @@ Valtro is a SaaS / CRM marketing theme for [Astro](https://astro.build) with a b
 - Blog Posts and Authors managed in Strapi 5 and loaded through Astro's Content Layer
 - Fully static output, responsive from 320px to 1920px+
 - Self-hosted Geist font through Astro's Fonts API
+- SEO ready: per-page meta and Open Graph tags, canonical URLs, sitemap and robots.txt
 
 ## Requirements
 
