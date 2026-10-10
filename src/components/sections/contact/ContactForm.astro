@@ -7,7 +7,7 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
 
 <div data-w-id="0d05970b-26f6-6913-db5d-590a6b187abc" style="opacity:0;filter:blur(15px);-webkit-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 60px, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="contact-form-block">
   <div class="contact-form w-form">
-    <form id="email-form" name="email-form" data-name="Email Form" method="post" action={endpoint || undefined} data-endpoint={endpoint} class="contact-form-inner-block" data-wf-page-id="6ac69645ebf308dc9ba19a36" data-wf-element-id="0d05970b-26f6-6913-db5d-590a6b187abe">
+    <form id="email-form" name="email-form" data-name="Email Form" method={endpoint ? 'post' : 'get'} action={endpoint || '/contact'} data-endpoint={endpoint} class="contact-form-inner-block">
       <div class="contact-form-heading-block">
         <h2 class="contact-form-title">Fill out the form</h2>
         <p class="contact-form-summary">Fill out the form and we’ll get back to you within 24 hours. Whether it’s about pricing, integrations, or a custom CRM setup, we’ve got you covered.</p>
@@ -30,7 +30,7 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
 </div>
 
 <script>
-  // Replaces Webflow's hosted form handler (which only works on webflow.io)
+  // Replaces the template's hosted form handler (it only works on its original host)
   // while keeping the exact same success / error UI.
   document.querySelectorAll<HTMLFormElement>('.w-form form[data-endpoint]').forEach((form) => {
     const wrapper = form.closest('.w-form');
@@ -46,7 +46,7 @@ const endpoint = import.meta.env.PUBLIC_FORM_ENDPOINT ?? '';
     };
 
     form.addEventListener('submit', async (event) => {
-      // Stop webflow.js' delegated handler from also processing the submit.
+      // Stop the interactions script's delegated form handler from also running.
       event.preventDefault();
       event.stopPropagation();
 

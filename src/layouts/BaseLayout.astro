@@ -6,24 +6,24 @@ import Header from '@/components/layout/Header.astro';
 import Footer from '@/components/layout/Footer.astro';
 
 import '@/styles/normalize.css';
-import '@/styles/webflow.css';
+import '@/styles/base.css';
 import '@/styles/valtro.css';
 
 interface Props extends SeoProps {
   /**
-   * Webflow page ID. The bundled webflow.js keys its interactions
+   * Interaction page ID. The bundled interactions.js keys its animations
    * (scroll/load/hover animations) to this ID, so every page must keep it.
    */
-  wfPage: string;
+  ixPage: string;
   /** Render the slot as-is, without page wrapper, header or footer (404, 401). */
   bare?: boolean;
 }
 
-const { wfPage, bare = false, ...seo } = Astro.props;
+const { ixPage, bare = false, ...seo } = Astro.props;
 ---
 
 <!doctype html>
-<html data-wf-page={wfPage} data-wf-site={config.webflow.site_id} lang={config.site.lang}>
+<html data-ix-page={ixPage} lang={config.site.lang}>
   <head>
     <meta charset="utf-8" />
     <SeoMeta {...seo} />
@@ -50,6 +50,6 @@ const { wfPage, bare = false, ...seo } = Astro.props;
       )
     }
     <script is:inline src="/js/jquery-3.5.1.min.js"></script>
-    <script is:inline src="/js/webflow.js"></script>
+    <script is:inline src="/js/interactions.js"></script>
   </body>
 </html>

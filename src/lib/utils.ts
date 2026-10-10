@@ -1,7 +1,7 @@
 const trimSlash = (path: string) => (path.length > 1 ? path.replace(/\/+$/, '') : path);
 
 /**
- * Mirrors Webflow's `w--current` behaviour: a link is current when it points
+ * Adds the theme's `w--current` state: a link is current when it points
  * at the page being rendered.
  */
 export function isCurrent(href: string, pathname: string): boolean {
@@ -9,7 +9,7 @@ export function isCurrent(href: string, pathname: string): boolean {
   return trimSlash(href) === trimSlash(pathname);
 }
 
-/** Props for an anchor that should carry Webflow's current-page state. */
+/** Props for an anchor that should carry the current-page state. */
 export function currentAttrs(href: string, pathname: string, className: string) {
   const current = isCurrent(href, pathname);
   return {
@@ -19,7 +19,7 @@ export function currentAttrs(href: string, pathname: string, className: string) 
   };
 }
 
-/** Webflow's default CMS date format, e.g. "August 11, 2025". */
+/** Blog date format, e.g. "August 11, 2025". */
 export function formatDate(value: string | Date | undefined | null): string {
   if (!value) return '';
   const date = typeof value === 'string' ? new Date(value) : value;

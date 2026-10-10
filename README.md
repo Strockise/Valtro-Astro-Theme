@@ -77,11 +77,12 @@ src/
 │   ├── index.astro, home-two.astro, feature.astro, pricing.astro
 │   ├── blog.astro, blog-post/[slug].astro
 │   ├── contact.astro, style-guide.astro, 404.astro
-├── styles/              # normalize.css, webflow.css (base), valtro.css (theme)
+├── styles/              # normalize.css, base.css (layout/widgets), valtro.css (theme)
 └── content.config.ts    # "blog" and "authors" collections loaded from Strapi
 public/
 ├── images/              # Theme images and icons
-└── js/webflow.js        # Interaction runtime (animations, navbar, dropdowns, tabs)
+├── js/interactions.js   # Interaction runtime (animations, navbar, dropdowns, tabs)
+    └── js/jquery-3.5.1.min.js
 ```
 
 ## Content (Strapi)
@@ -111,9 +112,9 @@ In development, if Strapi is unreachable, the blog renders its empty state and a
 - **Colors, typography and spacing**: CSS variables at the top of `src/styles/valtro.css`
 - **Page content**: the section components in `src/components/sections/`
 
-### About `data-w-id` and `wfPage`
+### About `data-w-id` and `ixPage`
 
-The animations are driven by `public/js/webflow.js`. It finds elements through their `data-w-id` attributes and the page ID passed to `BaseLayout` as `wfPage`. Keep those attributes when you edit a section, or its animation stops working. A new page can reuse the `wfPage` of the existing page it most resembles.
+The animations are driven by `public/js/interactions.js`. It finds elements through their `data-w-id` attributes and the page ID passed to `BaseLayout` as `ixPage`. Keep those attributes when you edit a section, or its animation stops working. A new page can reuse the `ixPage` of the existing page it most resembles.
 
 ## Contact form
 

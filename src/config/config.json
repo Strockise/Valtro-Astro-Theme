@@ -8,11 +8,11 @@
     "og_image": "/images/og-image.png",
     "lang": "en"
   },
-  "webflow": {
-    "site_id": "6ac69645ebf308dc9ba19a3f"
-  },
   "credits": {
-    "platform": { "name": "Astro", "url": "https://astro.build" }
+    "platform": {
+      "name": "Astro",
+      "url": "https://astro.build"
+    }
   },
   "blog": {
     "base_path": "/blog-post",
